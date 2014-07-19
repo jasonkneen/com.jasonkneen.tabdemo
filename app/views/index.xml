@@ -1,17 +1,17 @@
 <Alloy>
-	<TabGroup module="ui">
-		<Tab module="ui" title="Tab 1" icon="/images/icons/519-tools-1.png" activeIcon="/images/icons/519-tools-1_active.png" activeColor="#fff">
-			<Window module="ui" title="Tab 1">
+	<TabGroup module="tabGroup">
+		<Tab module="tabGroup" title="Tab 1" icon="/images/icons/519-tools-1.png" activeIcon="/images/icons/519-tools-1_active.png" activeColor="#fff">
+			<Window module="tabGroup" title="Tab 1">
 				<Label onClick="openWin1">Tab 1</Label>
 			</Window>
 		</Tab>
-		<Tab module="ui" title="Tab 2" icon="/images/icons/516-archive-box.png" activeIcon="/images/icons/516-archive-box_active.png" activeColor="#fff">
-			<Window module="ui"  title="Tab 2">
+		<Tab module="tabGroup" title="Tab 2" icon="/images/icons/516-archive-box.png" activeIcon="/images/icons/516-archive-box_active.png" activeColor="#fff">
+			<Window module="tabGroup"  title="Tab 2">
 				<Label onClick="openWin2">Tab 2</Label>
 			</Window>
 		</Tab>
-		<Tab module="ui" title="Tab 3" icon="/images/icons/522-floppy-disk.png" activeIcon="/images/icons/522-floppy-disk_active.png" activeColor="#fff">
-			<Window module="ui"  title="Tab 3">
+		<Tab module="tabGroup" title="Tab 3" icon="/images/icons/522-floppy-disk.png" activeIcon="/images/icons/522-floppy-disk_active.png" activeColor="#fff">
+			<Window module="tabGroup"  title="Tab 3">
 				<Label >Tab 3</Label>
 			</Window>
 		</Tab>
