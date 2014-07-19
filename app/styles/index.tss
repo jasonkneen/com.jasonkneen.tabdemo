@@ -1,5 +1,5 @@
 "Window": {
-	//backgroundColor: "transparent",	
+	backgroundColor: "#fff",	
 },
 "Label": {
 	width: Ti.UI.SIZE,

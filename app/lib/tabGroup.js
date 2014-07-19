@@ -2,12 +2,12 @@
 var tabGroup, win;
 
 // creates an iOS style navbar with title, back support.
-function createNavBar(win) {
+function createNavBar(w) {
 
 	var navBar = Ti.UI.createView({
 		height : OS_IOS ? 65 : 45,
 		top : 0,
-		backgroundColor : "#CCC"
+		backgroundColor : w.navTintColor || "#CCC"
 	});
 
 	var back = Ti.UI.createButton({
@@ -15,29 +15,29 @@ function createNavBar(win) {
 		bottom : 5,
 		top : 6,
 		title : "< back",
-		color : "black",
+		color : w.navTextColor || "#000",
 		backgroundImage : "null",
 		visible : false
 	});
 
 	var winTitle = Ti.UI.createLabel({
 		top : 10,
-		color : "black",
+		color : w.navTextColor || "#000",
 		font : {
 			fontWeight : "bold",
 			fontSize : 18
 		},
-		text : win.title
+		text : w.title
 	});
 
-	win.leftNavButton = back;
+	w.leftNavButton = back;
 
 	navBar.add(back);
 	navBar.winTitle = winTitle;
 	navBar.add(winTitle);
 
-	win.navBar = navBar;
-	win.add(navBar);
+	w.navBar = navBar;
+	w.add(navBar);
 }
 
 // create our tabGroup
@@ -48,15 +48,12 @@ exports.createTabGroup = function(args) {
 	}
 
 	// host heavyweight window
-	win = Ti.UI.createWindow({
-		backgroundColor : "#fff",
-	});
-
-	// apply the properties passed through
-	win.applyProperties(args);
-
+	win = Ti.UI.createWindow(args);
+	
 	// create the nav bar
 	createNavBar(win);
+
+
 
 	// tabgroup is a view
 	tabGroup = Ti.UI.createView({

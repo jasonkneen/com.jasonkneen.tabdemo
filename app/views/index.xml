@@ -1,5 +1,5 @@
 <Alloy>
-	<TabGroup module="tabGroup" tabsBackgroundColor="#000">
+	<TabGroup module="tabGroup" tabsBackgroundColor="#000"  navTintColor="#000" navTextColor="#fff">
 		<Tab module="tabGroup" title="Tab 1" icon="/images/icons/519-tools-1.png" activeIcon="/images/icons/519-tools-1_active.png" color="#555" activeColor="#fff">
 			<Window module="tabGroup" title="Tab 1">
 				<Label onClick="openWin1">Tab 1</Label>
