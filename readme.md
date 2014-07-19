@@ -3,11 +3,11 @@
 ## Overview
 This demo app for [Appcelerator](http://www.appcelerator.com) [Alloy](http://projects.appcelerator.com/alloy/docs/Alloy-bootstrap/index.html) MVC framework provides an (Android initially although it should work on iOS) DIRECT TabGroup replacement.
 
-This project came out of my talks at TiConf in New York and Amsterdam where I demonstrated the use of the "module" Alloy attribute to take a standard TabGroup tag and override it, returning a custom element for Android.
+This project came out of my talks at [TiConf](http://www.ticonf.org) in New York and Amsterdam where I demonstrated the use of the "module" Alloy attribute to take a standard TabGroup tag and override it, returning a custom element for Android.
 
 The idea was to come up with something that could "just work" on Android and could be implemented by simply adding a module="tabGroup" element to an existing Alloy TabGroup definition.
 
-### NOTE: This is very much "work in progress" and I'm tweaking as I use this in current projects
+### NOTE: This is very much "work in progress" and I'm tweaking as I use this in current projects. Please feel free to fork, and submit Pull Requests with any updates. See the wishlist.
 
 ## Latest
 * Initial commit - tested on Android - should work on iOS but tweaking currently
