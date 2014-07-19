@@ -49,11 +49,9 @@ exports.createTabGroup = function(args) {
 
 	// host heavyweight window
 	win = Ti.UI.createWindow(args);
-	
+
 	// create the nav bar
 	createNavBar(win);
-
-
 
 	// tabgroup is a view
 	tabGroup = Ti.UI.createView({
@@ -91,6 +89,8 @@ exports.createTabGroup = function(args) {
 	args.tabs[0].window.visible = true;
 
 	win.navBar.winTitle.text = args.tabs[0].window.title;
+	
+	win.navBar.winTitle.color = args.tabs[0].window.navTextColor;
 
 	// set our default (first) tab
 	var lastTab = args.tabs[0];
@@ -101,6 +101,8 @@ exports.createTabGroup = function(args) {
 
 	lastTab.icon.backgroundImage = lastTab.icon.backgroundActiveImage;
 	lastTab.caption.color = lastTab.activeColor;
+
+	win.navBar.backgroundColor = lastTab.window.barColor || "#ccc";
 
 	tabGroup.activeTab = args.tabs[0];
 
@@ -130,16 +132,17 @@ exports.createTabGroup = function(args) {
 
 		// set the title to the current view title
 		win.navBar.winTitle.text = e.source.window.title;
+		win.navBar.backgroundColor = e.source.window.barColor || "#ccc";
+		win.navBar.winTitle.color = e.source.window.navTextColor;
 
-		
 		// emulate the focus event
 		tabGroup.fireEvent("focus", {
 			type : "focus",
 			previousTab : lastTab,
-			previousIndex : _.indexOf(args.tabs,lastTab),
+			previousIndex : _.indexOf(args.tabs, lastTab),
 			tab : e.source,
-			index :  _.indexOf(args.tabs,e.source),
-			source: tabGroup	
+			index : _.indexOf(args.tabs, e.source),
+			source : tabGroup
 		});
 
 		// save the current / last tab selected
