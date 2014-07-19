@@ -63,7 +63,8 @@ exports.createTabGroup = function(args) {
 		height : 55,
 		bottom : 0,
 		layout : "horizontal",
-		backgroundColor : "#CCC"
+		backgroundColor : args.tabsBackgroundColor || "#CCC",
+		backgroundImage : args.tabsBackgroundImage || null
 	});
 
 	win.add(tabGroup);
@@ -177,7 +178,7 @@ exports.createTab = function(args) {
 	// create the caption
 	var caption = Ti.UI.createLabel({
 		text : args.title,
-		color : "black",
+		color : args.color || "black",
 		bottom : 2,
 		font : {
 			fontSize : 11
