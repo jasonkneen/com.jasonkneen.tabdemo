@@ -26,8 +26,8 @@ The idea was to come up with something that could "just work" on Android and cou
 
 
 ## Quick Start
-* [Download the latest version](https://github.com/jasonkneen/com.jasonkneen.tabdemo) 
-* copy tabgroup.js from /lib to your project's lib folder
+* [Download the latest version of the commonJS module](https://github.com/jasonkneen/com.jasonkneen.tabdemo/blob/master/app/lib/tabGroup.js) 
+* copy tabGroup.js to your project /lib folder
 * modified your existing TabGroup tags, add module="tabGroup" to the TabGroup, any Tabs and any Window elements in the tabs.
 
 ```xml
