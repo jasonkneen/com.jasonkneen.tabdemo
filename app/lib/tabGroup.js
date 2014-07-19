@@ -133,8 +133,20 @@ exports.createTabGroup = function(args) {
 		// set the title to the current view title
 		win.navBar.winTitle.text = e.source.window.title;
 
+		
+		// emulate the focus event
+		tabGroup.fireEvent("focus", {
+			type : "focus",
+			previousTab : lastTab,
+			previousIndex : _.indexOf(args.tabs,lastTab),
+			tab : e.source,
+			index :  _.indexOf(args.tabs,e.source),
+			source: tabGroup	
+		});
+
 		// save the current / last tab selected
 		lastTab = e.source;
+
 	});
 
 	return tabGroup;
@@ -207,7 +219,7 @@ exports.createTab = function(args) {
 };
 
 exports.createWindow = function(args) {
-	
+
 	if (OS_IOS) {
 		return Ti.UI.createWindow(args);
 	}

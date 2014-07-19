@@ -11,6 +11,9 @@ function openWin1() {
 	$.getView().activeTab.open(win);
 }
 
+$.getView().addEventListener("focus", function(e){
+	console.log(e);
+})
 
 function openWin2() {
 	var win = Ti.UI.createWindow({
