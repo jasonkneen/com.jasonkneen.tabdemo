@@ -1,0 +1,70 @@
+# TabGroup for Alloy 
+
+## Overview
+This demo app for [Appcelerator](http://www.appcelerator.com) [Alloy](http://projects.appcelerator.com/alloy/docs/Alloy-bootstrap/index.html) MVC framework provides an (Android initially although it should work on iOS) DIRECT TabGroup replacement.
+
+This project came out of my talks at TiConf in New York and Amsterdam where I demonstrated the use of the "module" Alloy attribute to take a standard TabGroup tag and override it, returning a custom element for Android.
+
+The idea was to come up with something that could "just work" on Android and could be implemented by simply adding a module="tabGroup" element to an existing Alloy TabGroup definition.
+
+### NOTE: This is very much "work in progress" and I'm tweaking as I use this in current projects
+
+## Latest
+* Initial commit - tested on Android - should work on iOS but tweaking currently
+* won't support all TabGroup events / properties / methods yet - adding them currently
+* tested in Titanium SDK 3.3 but also works in 3.1 and 3.2
+* test project removes the actionBar for the whole project so we can use our own NavBar
+
+## Features
+* Easy to add to existing XML
+* Simply add tabGroup.js to the /lib folder and module="tabGroup" to existing TabGroup, Tab and Window definitions within an existing TabGroup
+* Easy to customise
+* Works on Android, should work on iOS but why not just use a notmal tabgroup?
+
+### Wishlist
+* Support subwindows like normal tabGroups on iOS
+
+
+## Quick Start
+* [Download the latest version](https://github.com/jasonkneen/com.jasonkneen.tabdemo) 
+* copy tabgroup.js from /lib to your project's lib folder
+* modified your existing TabGroup tags, add module="tabGroup" to the TabGroup, any Tabs and any Window elements in the tabs.
+
+```xml
+Alloy>
+	<TabGroup module="ui">
+		<Tab module="ui" title="Tab 1" icon="/images/icons/519-tools-1.png" activeIcon="/images/icons/519-tools-1_active.png" activeColor="#fff">
+			<Window module="ui" title="Tab 1">
+				<Label onClick="openWin1">Tab 1</Label>
+			</Window>
+		</Tab>
+		<Tab module="ui" title="Tab 2" icon="/images/icons/516-archive-box.png" activeIcon="/images/icons/516-archive-box_active.png" activeColor="#fff">
+			<Window module="ui"  title="Tab 2">
+				<Label onClick="openWin2">Tab 2</Label>
+			</Window>
+		</Tab>
+		<Tab module="ui" title="Tab 3" icon="/images/icons/522-floppy-disk.png" activeIcon="/images/icons/522-floppy-disk_active.png" activeColor="#fff">
+			<Window module="ui"  title="Tab 3">
+				<Label >Tab 3</Label>
+			</Window>
+		</Tab>
+	</TabGroup>
+</Alloy>
+```
+## License
+
+<pre>
+Copyright 2013 Jason Kneen
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</pre>
