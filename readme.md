@@ -31,7 +31,7 @@ The idea was to come up with something that could "just work" on Android and cou
 * modified your existing TabGroup tags, add module="tabGroup" to the TabGroup, any Tabs and any Window elements in the tabs.
 
 ```xml
-Alloy>
+<Alloy>
 	<TabGroup module="ui">
 		<Tab module="ui" title="Tab 1" icon="/images/icons/519-tools-1.png" activeIcon="/images/icons/519-tools-1_active.png" activeColor="#fff">
 			<Window module="ui" title="Tab 1">
