@@ -31,17 +31,21 @@ function createNavBar(win) {
 	});
 
 	win.leftNavButton = back;
-	
+
 	navBar.add(back);
 	navBar.winTitle = winTitle;
 	navBar.add(winTitle);
-	
+
 	win.navBar = navBar;
 	win.add(navBar);
 }
 
 // create our tabGroup
 exports.createTabGroup = function(args) {
+
+	if (OS_IOS) {
+		return Ti.UI.createTabGroup(args);
+	}
 
 	// host heavyweight window
 	win = Ti.UI.createWindow({
@@ -138,6 +142,10 @@ exports.createTabGroup = function(args) {
 
 exports.createTab = function(args) {
 
+	if (OS_IOS) {
+		return Ti.UI.createTab(args);
+	}
+
 	// create an instance of a tab
 	var tab = Ti.UI.createView(args);
 
@@ -199,13 +207,12 @@ exports.createTab = function(args) {
 };
 
 exports.createWindow = function(args) {
+	
+	if (OS_IOS) {
+		return Ti.UI.createWindow(args);
+	}
+
 	var win = Ti.UI.createView(args);
 
 	return win;
-};
-
-exports.createView = function(args) {
-	var view = Ti.UI.createView(args);
-
-	return view;
 };
