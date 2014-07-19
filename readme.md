@@ -10,7 +10,7 @@ The idea was to come up with something that could "just work" on Android and cou
 ### NOTE: This is very much "work in progress" and I'm tweaking as I use this in current projects. Please feel free to fork, and submit Pull Requests with any updates. See the wishlist.
 
 ## Latest
-* Initial commit - tested on Android - should work on iOS but tweaking currently
+* Initial commit - tested on Android - on iOS you get a standard TabGroup
 * won't support all TabGroup events / properties / methods yet - adding them currently
 * tested in Titanium SDK 3.3 but also works in 3.1 and 3.2
 * test project removes the actionBar for the whole project so we can use our own NavBar
@@ -19,7 +19,7 @@ The idea was to come up with something that could "just work" on Android and cou
 * Easy to add to existing XML
 * Simply add tabGroup.js to the /lib folder and module="tabGroup" to existing TabGroup, Tab and Window definitions within an existing TabGroup
 * Easy to customise
-* Works on Android, should work on iOS but why not just use a notmal tabgroup?
+* Designed for Android - on iOS it returns standard TabGroup, Tab, Window
 
 ### Wishlist
 * Support subwindows like normal tabGroups on iOS
