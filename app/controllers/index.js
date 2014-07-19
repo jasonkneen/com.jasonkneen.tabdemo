@@ -2,8 +2,8 @@ function openWin1() {
 	var win = Ti.UI.createWindow({
 		title : "Tab 1 / Sub Window",
 		backgroundColor : "#fff",
-		navTintColor : "#000",
-		navTextColor : "#fff"
+		navTintColor : "#000", // this will set the background of the nav bar
+		navTextColor : "#fff" // this will set the text of the nav bar, back buttons etc.
 	});
 
 	var label = Ti.UI.createLabel({
@@ -23,7 +23,7 @@ $.getView().addEventListener("focus", function(e) {
 function openWin2() {
 	var win = Ti.UI.createWindow({
 		title : "Tab 2 / SubWindow",
-		backgroundColor : "#fff"
+		backgroundColor : "#fff" // not setting any nav colors here, so it'll default
 	});
 
 	var label = Ti.UI.createLabel({
