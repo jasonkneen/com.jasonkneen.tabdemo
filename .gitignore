@@ -9,3 +9,5 @@ tmp
 .settings
 Thumbs.db
 plugins/ti.alloy/hooks/alloy.js
+
+plugins/ti.alloy/plugin.py
