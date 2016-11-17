@@ -11,3 +11,9 @@ Thumbs.db
 plugins/ti.alloy/hooks/alloy.js
 
 plugins/ti.alloy/plugin.py
+
+plugins/ti.alloy/hooks/deepclean.js
+
+platform/ios/alloy_generated
+
+i18n/alloy_generated
