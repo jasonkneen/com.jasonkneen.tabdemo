@@ -41,7 +41,7 @@
 	<android xmlns:android="http://schemas.android.com/apk/res/android">
 
 		<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.jasonkneen.tabdemo" android:versionCode="1" android:versionName="1.0">
-			<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19"/>
+			<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23"/>
 			<application android:icon="@drawable/appicon" android:label="tabdemo" android:name="TabdemoApplication" android:debuggable="false" android:theme="@style/NoActionBar" >
 
 				<activity android:name="org.appcelerator.titanium.TiActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
