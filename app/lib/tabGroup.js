@@ -206,8 +206,8 @@ exports.createTab = function(args) {
         var icon = Ti.UI.createView({
             backgroundImage: args.icon,
             backgroundActiveImage: args.activeIcon,
-            width: 26,
-            height: 26,
+            width: 24,
+            height: 24,
             color: "#F00",
             top: 6,
             touchEnabled: false
