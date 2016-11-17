@@ -1,20 +1,48 @@
 <Alloy>
-	<TabGroup module="tabGroup" tabsBackgroundColor="#000">
+	<TabGroup module="tabGroup" tabsBackgroundColor="#000" autoHide="true">
 		<Tab module="tabGroup" title="Tab 1" icon="/images/icons/519-tools-1.png" activeIcon="/images/icons/519-tools-1_active.png" color="#555" activeColor="#fff">
-			<Window module="tabGroup" title="Tab 1" barColor="black" navTextColor = "#fff">
-				<Label onClick="openWin1">Tab 1</Label>
+			<Window module="tabGroup" title="Tab 1" barColor="black" navTextColor="#fff">
+				<ScrollView height="Ti.UI.SIZE" rowHeight="40" top="0" layout="vertical">
+					<Label>Row 1</Label>
+					<Label>Row 2</Label>
+					<Label>Row 3</Label>
+					<Label>Row 4</Label>
+					<Label>Row 5</Label>
+					<Label>Row 6</Label>
+					<Label>Row 7</Label>
+					<Label>Row 8</Label>
+					<Label>Row 9</Label>
+					<Label>Row 10</Label>
+					<Label>Row 11</Label>
+					<Label>Row 12</Label>
+					<Label>Row 13</Label>
+					<Label>Row 14</Label>
+					<Label>Row 15</Label>
+					<Label>Row 16</Label>
+					<Label>Row 17</Label>
+					<Label>Row 18</Label>
+					<Label>Row 19</Label>
+					<Label>Row 20</Label>
+					<Label>Row 21</Label>
+					<Label>Row 22</Label>
+					<Label>Row 23</Label>
+					<Label>Row 24</Label>
+					<Label>Row 25</Label>
+					<Label>Row 26</Label>
+					<Label>Row 27</Label>
+					<Label>Row 28</Label>
+				</ScrollView>
 			</Window>
 		</Tab>
-		<Tab module="tabGroup" title="Tab 2" icon="/images/icons/516-archive-box.png" activeIcon="/images/icons/516-archive-box_active.png" color="#555"  activeColor="#fff">
-			<Window module="tabGroup"  title="Tab 2" barColor="green" navTextColor = "red">
+		<Tab module="tabGroup" title="Tab 2" icon="/images/icons/516-archive-box.png" activeIcon="/images/icons/516-archive-box_active.png" color="#555" activeColor="#fff">
+			<Window module="tabGroup" title="Tab 2" barColor="green" navTextColor="red">
 				<Label onClick="openWin2">Tab 2</Label>
 			</Window>
 		</Tab>
-		<Tab module="tabGroup" title="Tab 3" icon="/images/icons/522-floppy-disk.png" activeIcon="/images/icons/522-floppy-disk_active.png" color="#555"  activeColor="#fff">
-			<Window module="tabGroup"  title="Tab 3">
+		<Tab module="tabGroup" title="Tab 3" icon="/images/icons/522-floppy-disk.png" activeIcon="/images/icons/522-floppy-disk_active.png" color="#555" activeColor="#fff">
+			<Window module="tabGroup" title="Tab 3">
 				<Label >Tab 3</Label>
 			</Window>
 		</Tab>
 	</TabGroup>
 </Alloy>
-
