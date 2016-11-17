@@ -12,7 +12,6 @@ The idea was to come up with something that could "just work" on Android and cou
 ## Latest
 * Initial commit - tested on Android - on iOS you get a standard TabGroup
 * won't support all TabGroup events / properties / methods yet - adding them currently
-* tested in Titanium SDK 3.3 but also works in 3.1 and 3.2
 * test project removes the actionBar for the whole project so we can use our own NavBar
 
 ## Features
@@ -54,7 +53,7 @@ The idea was to come up with something that could "just work" on Android and cou
 ## License
 
 <pre>
-Copyright 2013 Jason Kneen
+Copyright 2016 Jason Kneen
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
