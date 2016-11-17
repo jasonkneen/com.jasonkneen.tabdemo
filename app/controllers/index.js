@@ -17,7 +17,7 @@ function openWin1() {
 
 
 $.getView().addEventListener("focus", function(e) {
-	console.log(e);
+	//console.log(e);
 });
 
 function openWin2() {
