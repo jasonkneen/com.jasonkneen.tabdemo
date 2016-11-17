@@ -53,6 +53,8 @@ exports.createTabGroup = function(args) {
     // create the nav bar
     if (args.hasNavBar == true) createNavBar(win);
 
+
+
     // tabgroup is a view
     tabGroup = Ti.UI.createView({
         zIndex: 1000,
@@ -66,12 +68,13 @@ exports.createTabGroup = function(args) {
     win.add(tabGroup);
 
     if (args.autoHide === true) {
-        var y = 0, yPos;
+        var y = 0,
+            yPos;
 
         args.tabs[0].window.addEventListener("scroll", function(e) {
 
-			yPos = e.y || e.firstVisibleItem;
-		
+            yPos = e.y || e.firstVisibleItem;
+
             if (yPos > y && tabGroup.visible) {
                 tabGroup.animate({
                     bottom: -56,
