@@ -89,7 +89,7 @@ exports.createTabGroup = function(args) {
 	args.tabs[0].window.visible = true;
 
 	win.navBar.winTitle.text = args.tabs[0].window.title;
-	
+
 	win.navBar.winTitle.color = args.tabs[0].window.navTextColor;
 
 	// set our default (first) tab
@@ -106,29 +106,29 @@ exports.createTabGroup = function(args) {
 
 	tabGroup.activeTab = args.tabs[0];
 	tabGroup.setActiveTab = function(index){
-		
+
 		if (lastTab) {
 			lastTab.window.visible = false;
 			lastTab.icon.backgroundImage = lastTab.icon.__backgroundImage;
 			lastTab.caption.color = lastTab.caption.__color;
-		}		
-		
+		}
+
 		var tabToSetActive = args.tabs[index];
-		
+
 		tabToSetActive.icon.__backgroundImage = tabToSetActive.icon.backgroundImage;
 		tabToSetActive.caption.__color = tabToSetActive.caption.color;
-	
+
 		tabToSetActive.icon.backgroundImage = tabToSetActive.icon.backgroundActiveImage;
 		tabToSetActive.caption.color = tabToSetActive.activeColor;
-				
+
 		tabGroup.activeTab = tabToSetActive;
 		tabToSetActive.window.visible = true;
-		
+
 		// set the title to the current view title
 		win.navBar.winTitle.text = tabToSetActive.window.title;
 		win.navBar.backgroundColor = tabToSetActive.window.barColor || "#ccc";
-		win.navBar.winTitle.color = tabToSetActive.window.navTextColor;		
-		
+		win.navBar.winTitle.color = tabToSetActive.window.navTextColor;
+
 		// emulate the focus event
 		tabGroup.fireEvent("focus", {
 			type : "focus",
@@ -140,8 +140,8 @@ exports.createTabGroup = function(args) {
 		});
 
 		// save the current / last tab selected
-		lastTab = tabToSetActive;		
-		
+		lastTab = tabToSetActive;
+
 	};
 
 	// clicking a tab
