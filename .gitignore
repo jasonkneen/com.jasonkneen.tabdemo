@@ -17,3 +17,5 @@ plugins/ti.alloy/hooks/deepclean.js
 platform/ios/alloy_generated
 
 i18n/alloy_generated
+
+platform/android/alloy_generated
