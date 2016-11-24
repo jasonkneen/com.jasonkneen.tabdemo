@@ -1,5 +1,5 @@
 // global vars
-var tabGroup, win;
+var tabGroup, win, background;
 
 // creates an iOS style navbar with title, back support.
 function createNavBar(w) {
@@ -31,12 +31,12 @@ function createNavBar(w) {
     });
 
     w.leftNavButton = back;
+    w.navBar = navBar;
 
-    navBar.add(back);
     navBar.winTitle = winTitle;
+    navBar.add(back);
     navBar.add(winTitle);
 
-    w.navBar = navBar;
     w.add(navBar);
 }
 
@@ -51,21 +51,54 @@ exports.createTabGroup = function(args) {
     win = Ti.UI.createWindow(args);
 
     // create the nav bar
-    if (args.hasNavBar == true) createNavBar(win);
-
-
+    if (args.hasNavBar === true) createNavBar(win);
 
     // tabgroup is a view
     tabGroup = Ti.UI.createView({
         zIndex: 1000,
         height: 56,
         bottom: 0,
-        layout: "horizontal",
+        //layout: "horizontal",
         backgroundColor: args.tabsBackgroundColor || "#CCC",
         backgroundImage: args.tabsBackgroundImage || null
     });
 
+    var background = Ti.UI.createView();
+
+    background.applyProperties({
+        zIndex: 1,
+        height: 20,
+        bottom: 0,
+        borderRadius: 100,
+        //left: (_.indexOf(args.tabs, selectedTab) * selectedTab.rect.width) + (selectedTab.rect.width / 2),
+        width: 10,
+        opacity: 0,
+    });
+
+    tabGroup.add(background);
+    tabGroup.background = background;
+    tabGroup.autoHideCaptions = args.autoHideCaptions;
+
     win.add(tabGroup);
+
+    function showTabGroup() {
+        tabGroup.show();
+        tabGroup.animate({
+            bottom: 0,
+            duration: 150
+        }, function() {
+
+        });
+    }
+
+    function hideTabGroup() {
+        tabGroup.animate({
+            bottom: -112,
+            duration: 150
+        }, function() {
+            tabGroup.hide();
+        });
+    }
 
     if (args.autoHide === true) {
         var y = 0,
@@ -76,22 +109,11 @@ exports.createTabGroup = function(args) {
             yPos = e.y || e.firstVisibleItem;
 
             if (yPos > y && tabGroup.visible) {
-                tabGroup.animate({
-                    bottom: -56,
-                    duration: 100
-                }, function() {
-                    tabGroup.hide();
-                });
+                hideTabGroup();
             }
 
             if ((yPos < y) || e.firstItemVisible === 0 && !tabGroup.visible) {
-                tabGroup.show();
-                tabGroup.animate({
-                    bottom: 0,
-                    duration: 100
-                }, function() {
-
-                });
+                showTabGroup();
             }
 
             y = yPos;
@@ -103,10 +125,17 @@ exports.createTabGroup = function(args) {
         win.open();
     };
 
+    var tabCount = 1;
+
     // position the tabs based on count / %age
     args.tabs.forEach(function(tab) {
+
         tabGroup.add(tab);
-        tab.setWidth((99 / args.tabs.length) + "%");
+
+        tab.applyProperties({
+            left: (tabCount - 1) * ((768 / 2) / 3),
+            width: (99 / args.tabs.length) + "%"
+        });
 
         if (win.navBar) tab.window.top = 45;
         //tab.window.bottom = 56;
@@ -118,80 +147,148 @@ exports.createTabGroup = function(args) {
             tab.window.add(child);
         });
 
+        tabCount++;
     });
 
     args.tabs[0].window.visible = true;
 
-    if (win.navBar) win.navBar.winTitle.text = args.tabs[0].window.title;
+    // holds the last tab
+    var lastTab;
 
-    if (win.navBar) win.navBar.winTitle.color = args.tabs[0].window.navTextColor;
+    if (win.navBar) {
+        win.navBar.winTitle.applyProperties({
+            text: args.tabs[0].window.title,
+            color: args.tabs[0].window.navTextColor
+        });
 
-    // set our default (first) tab
-    var lastTab = args.tabs[0];
+        if (lastTab) win.navBar.backgroundColor = lastTab.window.barColor || "#ccc";
+    }
 
     // set initial highlights / active elements
-    lastTab.icon.__backgroundImage = lastTab.icon.backgroundImage;
-    lastTab.caption.__color = lastTab.caption.color;
+    //lastTab.icon.__backgroundImage = lastTab.icon.backgroundImage;
+    //lastTab.caption.__color = lastTab.caption.color;
 
-    lastTab.icon.backgroundImage = lastTab.icon.backgroundActiveImage;
-    lastTab.caption.color = lastTab.activeColor;
+    //lastTab.icon.backgroundImage = lastTab.icon.backgroundActiveImage;
+    //lastTab.caption.color = lastTab.activeColor;
 
-    if (win.navBar) win.navBar.backgroundColor = lastTab.window.barColor || "#ccc";
+    args.tabs.forEach(function(tab) {
+        setActiveTab(tab);
+    });
 
-    tabGroup.activeTab = args.tabs[0];
+    setActiveTab(args.tabs[0]);
+
+    if (tabGroup.activeTab.selectedBackgroundColor) tabGroup.setBackgroundColor(tabGroup.activeTab.selectedBackgroundColor);
 
     tabGroup.setActiveTab = function(index) {
-        setActiveTab({
-            source: args.tabs[index]
-        });
+        setActiveTab(args.tabs[index]);
     };
 
     // clicking a tab
+
     tabGroup.addEventListener("click", function(e) {
         setActiveTab(e);
     });
 
     function setActiveTab(e) {
+
+        var selectedTab = e.source || e;
+
+        // make the tab window visible
+        selectedTab.window.visible = true;
+
         // if we have a lastTab, reset it
         if (lastTab) {
             lastTab.window.visible = false;
             lastTab.icon.backgroundImage = lastTab.icon.__backgroundImage;
             lastTab.caption.color = lastTab.caption.__color;
+
+            if (tabGroup.autoHideCaptions) {
+                lastTab.caption.animate({
+                    opacity: 0,
+                    duration: 50
+                });
+
+                lastTab.icon.animate({
+                    top: 15,
+                    duration: 50
+                });
+            }
         }
 
-        // make the tab window visible
-
-        e.source.window.visible = true;
-
-        // set the activeTab property
-        tabGroup.activeTab = e.source;
-
         // hightlight the caption / icon
-        e.source.icon.__backgroundImage = e.source.icon.backgroundImage;
-        e.source.icon.backgroundImage = e.source.icon.backgroundActiveImage;
+        selectedTab.icon.__backgroundImage = selectedTab.icon.backgroundImage;
+        selectedTab.icon.backgroundImage = selectedTab.icon.backgroundActiveImage;
 
-        e.source.caption.__color = e.source.caption.color;
-        e.source.caption.color = e.source.activeColor;
+        selectedTab.caption.__color = selectedTab.caption.color;
+        selectedTab.caption.color = selectedTab.activeColor;
+
+        if (tabGroup.autoHideCaptions) {
+            selectedTab.icon.animate({
+                top: 8,
+                duration: 50
+            });
+
+            selectedTab.caption.animate({
+                opacity: 1,
+                duration: 50
+            });
+        }
+
+        tabGroup.background.applyProperties({
+            zIndex: 1,
+            height: 20,
+            bottom: 22,
+            borderRadius: 50,
+            left: (_.indexOf(args.tabs, selectedTab) * selectedTab.rect.width) + (selectedTab.rect.width / 2),
+            width: 10,
+            opacity: 0,
+            //backgroundColor: "red"
+            backgroundColor: selectedTab.selectedBackgroundColor
+        });
+
+        tabGroup.background.animate({
+            width: 800,
+            left: -100,
+            right: 0,
+            height: 56,
+            duration: 50,
+            opacity: 1,
+            bottom: 0
+        }, function() {
+            if (tabGroup.activeTab.selectedBackgroundColor) tabGroup.setBackgroundColor(tabGroup.activeTab.selectedBackgroundColor);
+        });
 
         // set the title to the current view title
-        if (win.navBar) win.navBar.winTitle.text = e.source.window.title;
-        if (win.navBar) win.navBar.backgroundColor = e.source.window.barColor || "#ccc";
-        if (win.navBar) win.navBar.winTitle.color = e.source.window.navTextColor;
+        if (win.navBar) {
+            win.navBar.applyProperties({
+                text: "test", //selectedTab.window.title,
+                backgroundColor: selectedTab.window.barColor || "#ccc",
+            });
+
+            win.navBar.winTitle.applyProperties({
+                color: selectedTab.window.navTextColor,
+                text: selectedTab.window.title,
+            });
+        }
 
         // emulate the focus event
         tabGroup.fireEvent("focus", {
             type: "focus",
             previousTab: lastTab,
             previousIndex: _.indexOf(args.tabs, lastTab),
-            tab: e.source,
-            index: _.indexOf(args.tabs, e.source),
+            tab: selectedTab,
+            index: _.indexOf(args.tabs, selectedTab),
             source: tabGroup
         });
 
-        // save the current / last tab selected
-        lastTab = e.source;
-    }
+        // set the activeTab property
+        tabGroup.activeTab = selectedTab;
 
+        // save the current / last tab selected
+        lastTab = selectedTab;
+
+        showTabGroup();
+    }
     return tabGroup;
 };
 
@@ -204,6 +301,8 @@ exports.createTab = function(args) {
     // create an instance of a tab
     var tab = Ti.UI.createView(args);
 
+    tab.zIndex = 1000;
+
     // if we have an icon, use it
     if (args.icon) {
         var icon = Ti.UI.createView({
@@ -212,7 +311,7 @@ exports.createTab = function(args) {
             width: 24,
             height: 24,
             color: "#F00",
-            top: 6,
+            top: 8,
             touchEnabled: false
         });
     }
@@ -222,6 +321,7 @@ exports.createTab = function(args) {
         text: args.title,
         color: args.color || "black",
         bottom: 2,
+        opacity: 1,
         font: {
             fontSize: 11
         },
@@ -229,8 +329,11 @@ exports.createTab = function(args) {
     });
 
     // cache the icon / caption against the tab, easier to get at later
+
     tab.icon = icon;
     tab.caption = caption;
+
+
 
     tab.add(icon);
     tab.add(caption);
