@@ -1,11 +1,17 @@
 // global vars
 var tabGroup, win, background;
 
+// get some basic device details
+var device = {
+    height: OS_IOS ? Ti.Platform.displayCaps.getPlatformHeight() : (Ti.Platform.displayCaps.getPlatformHeight() / (Ti.Platform.displayCaps.dpi / 160)),
+    width: OS_IOS ? Ti.Platform.displayCaps.getPlatformWidth() : (Ti.Platform.displayCaps.getPlatformWidth() / (Ti.Platform.displayCaps.dpi / 160))
+};
+
 // creates an iOS style navbar with title, back support.
 function createNavBar(w) {
 
     var navBar = Ti.UI.createView({
-        height: OS_IOS ? 65 : 45,
+        height: OS_IOS ? 65 : 65,
         top: 0,
         backgroundColor: w.navTintColor || "#CCC"
     });
@@ -62,6 +68,12 @@ exports.createTabGroup = function(args) {
         backgroundColor: args.tabsBackgroundColor || "#CCC",
         backgroundImage: args.tabsBackgroundImage || null
     });
+
+    tabGroup.add(Ti.UI.createView({
+        height: 1,
+        width: Ti.UI.FILL,
+        backgroundColor: "#EEE"
+    }));
 
     var background = Ti.UI.createView();
 
@@ -133,8 +145,8 @@ exports.createTabGroup = function(args) {
         tabGroup.add(tab);
 
         tab.applyProperties({
-            left: (tabCount - 1) * ((768 / 2) / 3),
-            width: (99 / args.tabs.length) + "%"
+            left: (tabCount - 1) * (device.width / tabCount),
+            width: (100 / args.tabs.length) + "%"
         });
 
         if (win.navBar) tab.window.top = 45;
@@ -197,7 +209,7 @@ exports.createTabGroup = function(args) {
         selectedTab.window.visible = true;
 
         // if we have a lastTab, reset it
-        if (lastTab) {
+        if (lastTab && lastTab != selectedTab) {
             lastTab.window.visible = false;
             lastTab.icon.backgroundImage = lastTab.icon.__backgroundImage;
             lastTab.caption.color = lastTab.caption.__color;
@@ -217,10 +229,10 @@ exports.createTabGroup = function(args) {
 
         // hightlight the caption / icon
         selectedTab.icon.__backgroundImage = selectedTab.icon.backgroundImage;
-        selectedTab.icon.backgroundImage = selectedTab.icon.backgroundActiveImage;
+        selectedTab.icon.backgroundImage = selectedTab.icon.backgroundActiveImage || selectedTab.icon.backgroundImage;
 
         selectedTab.caption.__color = selectedTab.caption.color;
-        selectedTab.caption.color = selectedTab.activeColor;
+        selectedTab.caption.color = selectedTab.activeColor || "#000";
 
         if (tabGroup.autoHideCaptions) {
             selectedTab.icon.animate({
@@ -301,6 +313,8 @@ exports.createTab = function(args) {
     // create an instance of a tab
     var tab = Ti.UI.createView(args);
 
+    tab.top=1;
+
     tab.zIndex = 1000;
 
     // if we have an icon, use it
@@ -332,8 +346,6 @@ exports.createTab = function(args) {
 
     tab.icon = icon;
     tab.caption = caption;
-
-
 
     tab.add(icon);
     tab.add(caption);
