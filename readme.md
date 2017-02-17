@@ -50,6 +50,13 @@ The idea was to come up with something that could "just work" on Android and cou
 	</TabGroup>
 </Alloy>
 ```
+
+or just add the following to JUST the first Alloy tag:
+
+```xml
+<Alloy module="tabGroup">
+```
+
 ## License
 
 <pre>
