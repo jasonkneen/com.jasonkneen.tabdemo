@@ -1,6 +1,6 @@
 # TabGroup for Alloy 
 
-[Demo Video](https://www.dropbox.com/s/1i0pxittoivc3pg/bottom_nav.MOV?dl=0)
+![Demo Video](https://www.dropbox.com/s/2x3x1gittnvw0f8/bottom_nav.gif?dl=1)
 
 ## Overview
 This demo app for [Appcelerator](http://www.appcelerator.com) [Alloy](http://projects.appcelerator.com/alloy/docs/Alloy-bootstrap/index.html) MVC framework provides an (Android initially although it should work on iOS) DIRECT TabGroup replacement.
