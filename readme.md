@@ -51,7 +51,7 @@ The idea was to come up with something that could "just work" on Android and cou
 </Alloy>
 ```
 
-or just add the following to JUST the first Alloy tag:
+or simply add the following to JUST the first Alloy tag:
 
 ```xml
 <Alloy module="tabGroup">
