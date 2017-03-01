@@ -64,16 +64,9 @@ exports.createTabGroup = function(args) {
         zIndex: 1000,
         height: 56,
         bottom: 0,
-        //layout: "horizontal",
         backgroundColor: args.tabsBackgroundColor || "#CCC",
-        backgroundImage: args.tabsBackgroundImage || null
+        backgroundImage: args.tabsBackgroundImage || null,
     });
-
-    tabGroup.add(Ti.UI.createView({
-        height: 1,
-        width: Ti.UI.FILL,
-        backgroundColor: "#EEE"
-    }));
 
     var background = Ti.UI.createView();
 
@@ -81,8 +74,7 @@ exports.createTabGroup = function(args) {
         zIndex: 1,
         height: 20,
         bottom: 0,
-        borderRadius: 100,
-        //left: (_.indexOf(args.tabs, selectedTab) * selectedTab.rect.width) + (selectedTab.rect.width / 2),
+        borderRadius: 100,        
         width: 10,
         opacity: 0,
     });
@@ -141,11 +133,9 @@ exports.createTabGroup = function(args) {
 
     // position the tabs based on count / %age
     args.tabs.forEach(function(tab) {
-
         tabGroup.add(tab);
-
         tab.applyProperties({
-            left: (tabCount - 1) * (device.width / tabCount),
+            left: (tabCount - 1) * (device.width / args.tabs.length),
             width: (100 / args.tabs.length) + "%"
         });
 
